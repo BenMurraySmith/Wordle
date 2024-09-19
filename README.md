@@ -1,6 +1,6 @@
 # Wordle Solver
 
-This program solves a Wordle styled puzzle! Given a 5 letter word from the user and a (somewhat) complete list of words from the English dictionary, my searching algoritm plays words based on the following logic:
+This program solves a Wordle styled puzzle! Given a 5 letter word from the user and a (somewhat) complete list of words from the English dictionary, my searching algorithm plays words based on the following logic:
 1. The first guess takes 5 unique letters from the 13 most common letters in the English alphabet.
 2. Once the word is played, it's passed through several checks:
      a) Have any letters been found (orange)?
