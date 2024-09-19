@@ -5,7 +5,7 @@ import collections
 
 unused_letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 most_common_letters = ['E', 'T', 'A', 'O', 'I', 'N', 'S', 'H', 'R', 'D', 'L', 'C', 'U', 'M', 'W', 'F', 'G', 'Y', 'P', 'B', 'V', 'K', 'J', 'X', 'Q', 'Z']
-
+#grab the complete list of words from a collection of csv files I've downloaded
 def get_data():
     duplicate_five_letter_words=[]
     individual_letter_csv_path = "C:\\Users\\bmurraysmith\\OneDrive - SharkNinja\\Documents\\side_project\\Dictionary-in-csv"
@@ -45,7 +45,7 @@ def first_guess(letters):
         if len(unique_letters)==5:
             unique_words.append(word)
  
-    
+    # filters unique words to comprise only of the most common letters
     best_first_guesses =[]
     for word in unique_words:
         count=0
@@ -55,15 +55,13 @@ def first_guess(letters):
                     count+=1
         if count == 5:
             best_first_guesses.append(word)
-
+    #takes a random word from this list
     random_index = random.randint(0, len(best_first_guesses) - 1)
     my_first_guess = best_first_guesses[random_index]
 
     return my_first_guess
-# print(first_guess(['E', 'T', 'A', 'O', 'I', 'N', 'S', 'H', 'R', 'D', 'L', 'C', 'U', 'M', 'W', 'F', 'G', 'Y', 'P', 'B', 'V', 'K', 'J', 'X', 'Q', 'Z']))
 
 # returns information on your previous guess
-# import collections
 def evaulate_guess(guess, correct_word, previous_dictionary):
     guess=guess.upper()
     correct_word=correct_word.upper()
@@ -88,7 +86,6 @@ def evaulate_guess(guess, correct_word, previous_dictionary):
         counting_index+=1
 
     # clean up list indexes
-    import collections
     correct_guesses=[]
     for letter in info:
         index = info[letter]
@@ -138,12 +135,12 @@ def evaulate_guess(guess, correct_word, previous_dictionary):
     #--------------------------------------------------------------------------------
         
     return curr_info
-# guess, correct_word, previous dictionary
 # print(evaulate_guess("ALOFT", "BOAST", {'O': [0, 1, 2], 'T': 4}))
 
 
 
-# next guess assumes the evaluation is non-empty
+# next guess takes the previous guess and evaluation. If it's empty, make another guess will completely new (and unique) letters
+
 def next_guess(previous_guess, evaluation):
     previous_guess=previous_guess.upper()
     # if zero letters are present in guess:
@@ -165,7 +162,6 @@ def next_guess(previous_guess, evaluation):
                     most_common_letters.remove(letter)
                 except ValueError:
                     continue
-                    # print("letter already removed.")
             
         unsure_indexes = {}
         definite_indexes = {}
